@@ -95,7 +95,8 @@ class Inventory
     public function getAvailability()
     {
         return $this->product && $this->productStock && $this->productStock->getIsInStock()
-        && ($this->productStock->getQty() - $this->systemConfig->getOutOfStockThreshold() > 0)
+        && ((($this->productStock->getQty() - $this->systemConfig->getOutOfStockThreshold()) > 0)
+            || !$this->productStock->getManageStock())
             ? self::STATUS_IN_STOCK : self::STATUS_OUT_OF_STOCK;
     }
 
@@ -104,6 +105,10 @@ class Inventory
      */
     public function getInventory()
     {
+        if (!$this->productStock->getManageStock()) {
+            return 9999; // Fake Quantity to make product available if Manage Stock is off.
+        }
+
         return $this->product && $this->productStock ? (int)$this->productStock->getQty() : 0;
     }
 }
