@@ -15,6 +15,10 @@
                     <label>Push Products</label>
                     <frontend_model>Facebook\BusinessExtension\Block\Adminhtml\System\Config\ProductFeed</frontend_model>
                 </field>
+                <field id="category_feed" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Push All Categories to Facebook Catalog</label>
+                    <frontend_model>Facebook\BusinessExtension\Block\Adminhtml\System\Config\CategoryFeed</frontend_model>
+                </field>
                 <field id="collections_sync" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Collections Sync</label>
                     <config_path>facebook/catalog_management/collections_sync</config_path>
@@ -24,11 +28,10 @@
             </group>
             <group id="inventory_management" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Inventory Management</label>
-                <field id="inventory_source" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Inventory Source</label>
-                    <config_path>facebook/inventory_management/inventory_source</config_path>
-                    <source_model>Facebook\BusinessExtension\Model\Config\Source\Product\InventorySource</source_model>
-                    <comment>Use this inventory source for products on Facebook and Instagram</comment>
+                <field id="out_of_stock_threshold" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Out-of-Stock Threshold</label>
+                    <config_path>facebook/inventory_management/out_of_stock_threshold</config_path>
+                    <comment>Product's availability will be out of stock if inventory count is lower than the specified threshold value</comment>
                 </field>
             </group>
         </section>
